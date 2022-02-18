@@ -1,2 +1,2 @@
 # Quiz Master
-Trivia quiz game made in Unity
+IN-PROGRESS: Trivia quiz game made in Unity,  built to practice and learn UI techniques

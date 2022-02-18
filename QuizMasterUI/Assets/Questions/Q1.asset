@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Q1
   m_EditorClassIdentifier: 
   question: What is my favorite color?
+  answers:
+  - Orange
+  - Blue
+  - Yellow
+  - Green
+  correctAnswerIndex: 2

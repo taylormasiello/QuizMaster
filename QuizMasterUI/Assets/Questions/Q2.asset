@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Q2
   m_EditorClassIdentifier: 
   question: What is my favorite food?
+  answers:
+  - Pizza
+  - Burgers
+  - Carrots
+  - Mashed Potatoes
+  correctAnswerIndex: 3

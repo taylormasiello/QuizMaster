@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Q3
   m_EditorClassIdentifier: 
   question: What color is my car?
+  answers:
+  - Red
+  - White
+  - Blue
+  - Green
+  correctAnswerIndex: 1

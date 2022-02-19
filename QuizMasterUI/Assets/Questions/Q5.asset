@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Q5
   m_EditorClassIdentifier: 
   question: What is my favorite number?
+  answers:
+  - 99
+  - 4
+  - 365
+  - 8
+  correctAnswerIndex: 3

@@ -8,7 +8,8 @@ public class Quiz : MonoBehaviour
 {
     [Header("Questions")] // "Header" grouping of SerializeField's
     [SerializeField] TextMeshProUGUI questionText;
-    [SerializeField] QuestionSO question;
+    [SerializeField] List<QuestionSO> questions = new List<QuestionSO>(); // bc serialized, " = new List<QuestionSO>()" not needed, unaffects code function; including adds more protection if field changes to non-serialized, as will be needed in that event
+    QuestionSO currentQuestion;
 
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
@@ -27,8 +28,6 @@ public class Quiz : MonoBehaviour
     void Start()
     {
         timer = FindObjectOfType<Timer>();
-        GetNextQuestion();
-        // DisplayQuestion();
     }
 
     void Update()
@@ -64,7 +63,7 @@ public class Quiz : MonoBehaviour
     {
         Image buttonImage;
 
-        if (index == question.GetCorrectAnswerIndex()) // clicked correct answer button
+        if (index == currentQuestion.GetCorrectAnswerIndex()) // clicked correct answer button
         {
             questionText.text = "Correct!";
             buttonImage = answerButtons[index].GetComponent<Image>();
@@ -72,8 +71,8 @@ public class Quiz : MonoBehaviour
         }
         else
         {
-            correctAnswerIndex = question.GetCorrectAnswerIndex();
-            string correctAnswer = question.GetAnswer(correctAnswerIndex);
+            correctAnswerIndex = currentQuestion.GetCorrectAnswerIndex();
+            string correctAnswer = currentQuestion.GetAnswer(correctAnswerIndex);
             questionText.text = "Sorry, but the correct answer was:\n" + correctAnswer;
 
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
@@ -83,19 +82,34 @@ public class Quiz : MonoBehaviour
 
     void GetNextQuestion()
     {
-        SetButtonState(true);
-        SetDefaultButtonSprites();
-        DisplayQuestion();
+        if(questions.Count > 0)
+        {
+            SetButtonState(true);
+            SetDefaultButtonSprites();
+            GetRandomQuestion();
+            DisplayQuestion();
+        }       
+    }
+
+    void GetRandomQuestion()
+    {
+        int index = Random.Range(0, questions.Count); // returns random int between 0 and "last elm" in List
+        currentQuestion = questions[index]; // q from List<QuestionSO> at int (random^) index
+        
+        if(questions.Contains(currentQuestion)) // best practice: when removing an item from a List, always check first to see if it exists within the List before trying to remove it; avoids any potential errors, best to err on side of caution
+        {
+            questions.Remove(currentQuestion); // remove q from List<QuestionSO>, to avoid repeat
+        }
     }
 
     void DisplayQuestion()
     {
-        questionText.text = question.GetQuestion();
+        questionText.text = currentQuestion.GetQuestion();
 
         for (int i = 0; i < answerButtons.Length; i++)
         {
             TextMeshProUGUI buttonText = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = question.GetAnswer(i);
+            buttonText.text = currentQuestion.GetAnswer(i);
         }
 
     }

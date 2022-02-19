@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Q4
   m_EditorClassIdentifier: 
   question: What is my best friend's name?
+  answers:
+  - Kayla
+  - Tom
+  - Ann
+  - Bill
+  correctAnswerIndex: 0

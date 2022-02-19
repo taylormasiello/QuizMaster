@@ -222,6 +222,7 @@ MonoBehaviour:
   timeToShowCorrectAnswer: 5
   loadNextQuestion: 0
   fillFraction: 0
+  isAnsweringQuestion: 0
 --- !u!4 &206787776
 Transform:
   m_ObjectHideFlags: 0
@@ -721,7 +722,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 1309856794}
-  question: {fileID: 11400000, guid: a14aa690594eea340a894453727ad07e, type: 2}
+  questions:
+  - {fileID: 11400000, guid: a14aa690594eea340a894453727ad07e, type: 2}
+  - {fileID: 11400000, guid: b1f74a5b3b52bc24fb414290d20626d1, type: 2}
+  - {fileID: 11400000, guid: 7140e9358ddd74449bfbcadd8af2856f, type: 2}
+  - {fileID: 11400000, guid: 21d50a15bd4586746bc99cd8a1fcd287, type: 2}
+  - {fileID: 11400000, guid: 170320b3095a2f24d92229f973eef59d, type: 2}
   answerButtons:
   - {fileID: 1029172938}
   - {fileID: 972122209}

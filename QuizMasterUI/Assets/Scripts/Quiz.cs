@@ -14,7 +14,8 @@ public class Quiz : MonoBehaviour
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
     int correctAnswerIndex;
-    bool hasAnsweredEarly; // if timer ran out or clicked button to show answer
+    bool hasAnsweredEarly = true; // if timer ran out or clicked button to show answer
+                                  // initialized to true to auto-fail "else if" conditional of first Update() loop of game, forcing next loop, in which if/else block will function as intended
 
     [Header("Button Colors")]
     [SerializeField] Sprite defaultAnswerSprite;
@@ -33,7 +34,7 @@ public class Quiz : MonoBehaviour
 
     public bool isComplete;
     
-    void Start()
+    void Awake()
     {
         timer = FindObjectOfType<Timer>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
@@ -48,6 +49,12 @@ public class Quiz : MonoBehaviour
         // check state of timer, to check if getNextQ
         if(timer.loadNextQuestion)
         {
+            if (progrssBar.value == progrssBar.maxValue) // on final q, when tries to loadNextQ and List empty, will be caught w/ this "if"
+            {
+                isComplete = true; // changes gameComplete flag to true, signaling end of q's/game
+                return; // returns us out of Update() loop early
+            }
+
             hasAnsweredEarly = false;
             GetNextQuestion();
             timer.loadNextQuestion = false; // stops from getNewQ every frame
@@ -69,11 +76,6 @@ public class Quiz : MonoBehaviour
         SetButtonState(false);
         timer.CancelTimer(); // cuts timer short, puts it into its next state
         scoreText.text = "Score: " + scoreKeeper.CalculateScore() + "%";
-
-        if(progrssBar.value == progrssBar.maxValue)
-        {
-            isComplete = true;
-        }
     }
 
     void DisplayAnswer(int index)

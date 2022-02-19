@@ -1,10 +1,15 @@
 # Quiz Master
-IN-PROGRESS: Trivia quiz game made in Unity,  built to practice and learn UI techniques
+Trivia quiz game made in Unity, built to learn and practice Unity UI techniques
 
-Game Mechanics Needed:
-- mechanism to store and retrieve questions
-- buttons to select an anwser
-- timer to put some pressure on the player
-- progress bar to show how many questions remain
-- scoring to show the player how well they did
-- a way to restart the game when the quiz ends
+###  Some of the New Unity Features Learned during this project:
+- Canvas
+- TextMeshPro
+- Buttons
+- Sliders
+- Scriptable Objects
+- Storing Data in SO's
+- Using Data from SO's
+- Keeping Score
+- Visible Score to Players
+- Keeping Time as a Game Mechanica
+- Visible Timer to Players
